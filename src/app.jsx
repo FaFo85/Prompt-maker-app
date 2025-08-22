@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, collection, addDoc, query, onSnapshot, doc, deleteDoc, updateDoc, setLogLevel } from 'firebase/firestore';
+import firebaseConfig from './firebaseConfig.js';
 
 // --- Helper Icon Components ---
 const LoaderIcon = () => (
@@ -55,7 +56,7 @@ export default function App() {
             if (typeof __firebase_config === 'undefined') {
                 throw new Error("Firebase configuration object not found.");
             }
-            const firebaseConfig = JSON.parse(__firebase_config);
+            
             const app = initializeApp(firebaseConfig);
             const authInstance = getAuth(app);
             const dbInstance = getFirestore(app);
